@@ -13,4 +13,4 @@ require("artem.plugins.lsp.lspconfig")
 require("artem.plugins.lsp.null-ls")
 require("artem.plugins.autopairs")
 require("artem.plugins.treesitter")
---require("jdtls")
+
