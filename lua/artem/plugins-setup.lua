@@ -35,15 +35,17 @@ return packer.startup(function(use)
 
 	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
 
-  use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
-  use("szw/vim-maximizer") -- maximizes and restores current window
+	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
+
+	use("szw/vim-maximizer") -- maximizes and restores current window
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
 
-  	-- commenting with gc
+	-- commenting with gc
 	use("numToStr/Comment.nvim")
 
 	-- file explorer
@@ -69,7 +71,7 @@ return packer.startup(function(use)
 	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
 	use("rafamadriz/friendly-snippets") -- useful snippets
 
-  	-- managing & installing lsp servers, linters & formatters
+	-- managing & installing lsp servers, linters & formatters
 	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
 	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
 
@@ -85,7 +87,7 @@ return packer.startup(function(use)
 		},
 	}) -- enhanced lsp uis
 
-  	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
