@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "node-seal": "^5.1.3"
+  }
+}
