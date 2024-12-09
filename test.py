@@ -19,7 +19,7 @@ ansB = sp.diff(x**3 + 2*x**2 - x, x, 3)
 ansC = Derivative(x**3 + 2*x**2 - x, x, 2).doit()
 
 # Print the results
-print("Function:", f)
+print("Function:", f) 
 print("First Derivative:", f_prime)
 #print("Second Derivative:", f_double_prime)
 #print("A:", ansA)

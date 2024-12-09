@@ -3,12 +3,14 @@ vim.cmd("let g:netrw_liststyle = 3")
 local opt = vim.opt -- for conciseness
 
 -- line numbers
+opt.guicursor = "" -- this makes the cursor FAT in the Insert mode, not skinny
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
+opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
+opt.softtabstop = 4 -- 4 spaces for tabs (prettier default)
+opt.shiftwidth = 4 -- 4 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
@@ -42,42 +44,16 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
--- local opt = vim.opt -- for conciseness
---
--- --line numbers
--- opt.relativenumber = true
--- opt.number = true
---
--- -- tabs and idents
--- opt.tabstop = 2
--- opt.shiftwidth = 2
--- opt.expandtab = true
--- opt.autoindent = true
---
--- -- line wrapping
--- opt.wrap = false
---
--- -- search settings
--- opt.ignorecase = true
--- opt.smartcase = true
---
--- -- cursor line
--- opt.cursorline = true
---
--- --appearance
--- opt.termguicolors = true
--- opt.background = "dark"
--- opt.signcolumn = "yes"
---
--- --backspace
--- opt.backspace = "indent,eol,start"
---
--- --clipboard
--- opt.clipboard:append("unnamedplus")
---
--- --split windows
--- opt.splitright = true
--- opt.splitbelow = true
---
--- opt.iskeyword:append("-")
+opt.hlsearch = false
+opt.incsearch = true
+
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
+
+opt.updatetime = 50
+opt.colorcolumn = "80"
