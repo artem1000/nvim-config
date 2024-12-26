@@ -45,7 +45,7 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 keymap.set("n", "n", "nzzzv")
 
-keymap.set("x", "<leader>p", '"_dP') -- preserves original highlighted buffer when copying it over another highlighted word.
+keymap.set("n", "<leader>p", '"_dP') -- preserves original highlighted buffer when copying it over another highlighted word.
 
 keymap.set("n", "<leader>y", '"+y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else
 keymap.set("v", "<leader>y", '"+y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else

@@ -57,3 +57,6 @@ opt.isfname:append("@-@")
 
 opt.updatetime = 50
 opt.colorcolumn = "80"
+
+-- this is for the Obsidian NVIM plugin
+opt.conceallevel = 1

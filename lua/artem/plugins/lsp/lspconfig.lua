@@ -92,7 +92,7 @@ return {
 					cmd = {
 						"/usr/local/opt/openjdk/bin/java",
 						"-jar",
-						"/Users/fcmbp/Documents/dev/groovy-lsp/groovy-language-server/build/libs/groovy-language-server-all.jar",
+						"/Users/agrinchenko/Documents/DEV/groovy-lsp/groovy-language-server/build/libs/groovy-language-server-all.jar",
 					},
 				})
 			end,
