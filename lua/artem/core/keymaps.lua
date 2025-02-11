@@ -39,7 +39,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "J", "mzJ`z") -- when the bottom line is appended to the current line the cursor does not jump to the very end of the line.
 
 keymap.set("n", "<C-d>", "<C-d>zz") -- when paging up and down keeps the cursor in the middle of the page
-keymap.set("n", "<C-u>", "<C-d>zz") -- when paging up and down keeps the cursor in the middle of the page
+keymap.set("n", "<C-u>", "<C-u>zz") -- when paging up and down keeps the cursor in the middle of the page
 
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
