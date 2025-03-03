@@ -88,7 +88,7 @@ return {
 			["groovyls"] = function()
 				lspconfig["groovyls"].setup({
 					capabilities = capabilities,
-					filetypes = { "groovy", "ncfg" },
+					filetypes = { "groovy", "ncfg", "bjs", "bjd" },
 					cmd = {
 						"/usr/local/opt/openjdk/bin/java",
 						"-jar",
