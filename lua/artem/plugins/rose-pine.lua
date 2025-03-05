@@ -6,7 +6,8 @@ function ColorMyPencils(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-	vim.api.nvim_set_hl(0, "Visual", { bg = "#524f67" }) -- https://rosepinetheme.com/palette/ingredients/
+	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#6e6a86" })
+	vim.api.nvim_set_hl(0, "Visual", { bg = "#908caa" }) -- https://rosepinetheme.com/palette/ingredients/
 end
 
 return {
