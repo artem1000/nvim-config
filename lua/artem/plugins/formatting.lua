@@ -17,7 +17,7 @@ return {
 				html = { "prettier" },
 				java = { "astyle" },
 				xml = { "xmlformatter" },
-				json = { "prettier" },
+				json = { "fixjson" },
 				yaml = { "prettier" },
 				sh = { "beautysh" },
 				groovy = { "npm-groovy-lint" },
