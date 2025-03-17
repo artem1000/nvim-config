@@ -64,7 +64,8 @@ keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "M
 -- local ui = require("harpoon.ui")
 --:
 keymap.set("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>")
-keymap.set("n", "<C-e>", ":Telescope harpoon marks<CR>")
+-- keymap.set("n", "<C-e>", ":Telescope harpoon marks<CR>")
+keymap.set("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 keymap.set("n", "<C-p>", ":lua require('harpoon.ui').nav_prev()<CR>")
 keymap.set("n", "<C-n>", ":lua require('harpoon.ui').nav_next()<CR>")
 -- <C-d> to delete marked file
