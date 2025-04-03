@@ -60,3 +60,5 @@ opt.colorcolumn = "120"
 
 -- this is for the Obsidian NVIM plugin
 opt.conceallevel = 1
+
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
