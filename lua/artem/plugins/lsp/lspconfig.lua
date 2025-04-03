@@ -96,6 +96,35 @@ return {
 					},
 				})
 			end,
+			["gopls"] = function()
+				lspconfig["gopls"].setup({
+					capabilities = capabilities,
+					settings = {
+						gopls = {
+							analyses = {
+								unusedparams = true, -- highlight unused parameters
+								unreachable = true, -- highlight unreachable code
+							},
+							staticcheck = true, -- enable staticcheck for better linting
+							usePlaceholders = true, -- enable placeholders in completions
+							gofumpt = true, -- format code with gofumpt
+							semanticTokens = true, -- enable semantic tokens
+						},
+					},
+					on_attach = function(client, bufnr)
+						local opts = { buffer = bufnr, silent = true }
+						-- Additional Go-specific keymaps
+						vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
+						vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- Go to declaration
+						vim.keymap.set("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>", opts) -- Go to references
+						vim.keymap.set("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- Go to implementation
+						vim.keymap.set("n", "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>", opts) -- Go to type definition
+						vim.keymap.set("n", "<leader>rn", "<Cmd>lua vim.lsp.buf.rename()<CR>", opts) -- Rename
+						vim.keymap.set("n", "<leader>ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", opts) -- Code actions
+						vim.keymap.set("n", "<leader>D", "<Cmd>Telescope diagnostics bufnr=0<CR>", opts) -- Show diagnostics
+					end,
+				})
+			end,
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({

@@ -30,6 +30,17 @@ return {
 			defaults = {
 				layout_strategy = "vertical",
 				path_display = { "smart" },
+				file_ignore_patterns = {
+					"node_modules/",
+					"dist/",
+					"%.next",
+					"%.git/",
+					"%.gitlab/",
+					"build/",
+					"target/",
+					"attachments/",
+					"package%-lock%.json",
+				},
 				mappings = {
 					i = {
 						["<CR>"] = select_one_or_multi,
