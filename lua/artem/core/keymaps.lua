@@ -49,7 +49,7 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "<leader>js", "iジ<ESC>", { desc = "Japanese smiley ジ" })
 
 -- this one does not seem to work in nvim, so removing it.
--- keymap.set("n", "<leader>p", '"_dP') -- preserves original highlighted buffer when copying it over another highlighted word.
+keymap.set("n", "<leader>p", '"_dP') -- preserves original highlighted buffer when copying it over another highlighted word.
 
 -- keymap.set("n", "<leader>y", '"+y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else
 -- keymap.set("v", "<leader>y", '"+y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else
@@ -69,7 +69,7 @@ keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "M
 --local mark = require("harpoon.mark")
 -- local ui = require("harpoon.ui")
 --:
-keymap.set("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>")
+keymap.set("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>", { desc = "Add Harpoon Mark, then C-e/p/n" })
 -- keymap.set("n", "<C-e>", ":Telescope harpoon marks<CR>")
 keymap.set("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 keymap.set("n", "<C-p>", ":lua require('harpoon.ui').nav_prev()<CR>")
