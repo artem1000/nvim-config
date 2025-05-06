@@ -48,6 +48,7 @@ return {
 					"--with-filename",
 					"--line-number",
 					"--column",
+					"--no-ignore-vcs",
 					"--smart-case",
 					"--follow", -- <-- this makes ripgrep follow symlinks
 				},
