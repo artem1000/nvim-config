@@ -41,6 +41,16 @@ return {
 					"attachments/",
 					"package%-lock%.json",
 				},
+				vimgrep_arguments = {
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--follow", -- <-- this makes ripgrep follow symlinks
+				},
 				mappings = {
 					i = {
 						["<CR>"] = select_one_or_multi,
