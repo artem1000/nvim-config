@@ -46,7 +46,42 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 keymap.set("n", "n", "nzzzv")
 -- insert Japanese Smiley ジ ジ㋛㋡ッツツ゚ｼ
-keymap.set("n", "<leader>js", "iジ<ESC>", { desc = "Japanese smiley ジ" })
+-- keymap.set("n", "<leader>js", "iジ<ESC>", { desc = "Japanese smiley ジ" })
+
+-- Full list of JDTLS commands:
+-- ======> just run ===> :lua for k, _ in pairs(require('jdtls')) do print(k) end
+-- update_projects_config
+-- update_project_config
+-- build_projects
+-- _complete_compile
+-- compile
+-- javap
+-- jshell
+-- start_or_attach
+-- settings
+-- extract_method
+-- extract_variable_all
+-- _complete_set_runtime
+-- extendedClientCapabilities
+-- extract_variable
+-- pick_test
+-- test_nearest_method
+-- test_class
+-- setup_dap
+-- organize_imports
+-- set_runtime
+-- setup
+-- open_classfile
+-- jol
+-- super_implementation
+-- commands
+-- extract_constant
+-- JDTLS keymaps
+keymap.set("n", "<leader>js", ":lua require'jdtls'.organize_imports()<CR>", { desc = "JDTLS organize imports" })
+keymap.set("n", "<leader>jm", ":lua require'jdtls'.extract_method()<CR>", { desc = "JDTLS extract method" })
+keymap.set("n", "<leader>jv", ":lua require'jdtls'.extract_variable()<CR>", { desc = "JDTLS extract variable" })
+keymap.set("n", "<leader>jb", ":lua require'jdtls'.build_projects()<CR>", { desc = "JDTLS build projects" })
+keymap.set("n", "<leader>jc", ":lua require'jdtls'.compile()<CR>", { desc = "JDTLS compile" })
 
 -- this one does not seem to work in nvim, so removing it.
 keymap.set("n", "<leader>p", '"_dP') -- preserves original highlighted buffer when copying it over another highlighted word.

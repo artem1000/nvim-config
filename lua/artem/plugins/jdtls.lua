@@ -12,10 +12,39 @@ return {
 							require("lazyvim.util").on_attach(function(_, buffer)
 								vim.keymap.set(
 									"n",
-									"<leader>di",
+									"<leader>ji",
 									"<Cmd>lua require'jdtls'.organize_imports()<CR>",
 									{ buffer = buffer, desc = "Organize Imports" }
 								)
+								-- Full list of JDTLS commands:
+								-- ======> just run ===> :lua for k, _ in pairs(require('jdtls')) do print(k) end
+								-- update_projects_config
+								-- update_project_config
+								-- build_projects
+								-- _complete_compile
+								-- compile
+								-- javap
+								-- jshell
+								-- start_or_attach
+								-- settings
+								-- extract_method
+								-- extract_variable_all
+								-- _complete_set_runtime
+								-- extendedClientCapabilities
+								-- extract_variable
+								-- pick_test
+								-- test_nearest_method
+								-- test_class
+								-- setup_dap
+								-- organize_imports
+								-- set_runtime
+								-- setup
+								-- open_classfile
+								-- jol
+								-- super_implementation
+								-- commands
+								-- extract_constant
+
 								vim.keymap.set(
 									"n",
 									"<leader>dt",
@@ -55,6 +84,7 @@ return {
 							end)
 
 							--local capabilities = require("cmp_nvim_lsp").default_capabilities()
+							local home = os.getenv("HOME")
 							local worksace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), "p:h:t")
 							local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 							-- vim.lsp.set_log_level('DEBUG')
@@ -81,6 +111,7 @@ return {
 									"java.base/java.util=ALL-UNNAMED",
 									"--add-opens",
 									"java.base/java.lang=ALL-UNNAMED",
+									"-javaagent:" .. home .. ".local/share/nvim/mason/packages/jdtls/lombok.jar",
 									"-jar",
 									vim.fn.glob(
 										"/opt/java/JDK/jdt-language-server-1.9.0-202203031534/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
@@ -116,17 +147,70 @@ return {
 								-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 								-- for a list of options
 								settings = {
-									java = {},
+									java = {
+										eclipse = {
+											downloadSources = true,
+										},
+										configuration = {
+											updateBuildConfiguration = "interactive",
+											runtimes = {
+												{
+													name = "Java8-261",
+													path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home/jre",
+												},
+											},
+										},
+										maven = {
+											downloadSources = true,
+										},
+										referencesCodeLens = {
+											enabled = true,
+										},
+										references = {
+											includeDecompiledSources = true,
+										},
+										inlayHints = {
+											parameterNames = {
+												enabled = "all", -- literals, all, none
+											},
+										},
+										format = {
+											enabled = false,
+										},
+									},
+									signatureHelp = { enabled = true },
 								},
 								handlers = {
 									["language/status"] = function(_, result)
-										-- print(result)
+										print(result)
 									end,
 									["$/progress"] = function(_, result, ctx)
 										-- disable progress updates.
 									end,
 								},
+								vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+									pattern = { "*.java" },
+									callback = function()
+										local _, _ = pcall(vim.lsp.codelens.refresh)
+									end,
+								}),
 							}
+
+							local formatters = require("lvim.lsp.null-ls.formatters")
+							formatters.setup({
+								{ command = "google_java_format", filetypes = { "java" } },
+							})
+
+							config["on_attach"] = function(client, bufnr)
+								local _, _ = pcall(vim.lsp.codelens.refresh)
+								require("jdtls").setup_dap({ hotcodereplace = "auto" })
+								require("lvim.lsp").on_attach(client, bufnr)
+								local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
+								if status_ok then
+									jdtls_dap.setup_dap_main_class_configs()
+								end
+							end
+
 							require("jdtls").start_or_attach(config)
 						end,
 					})
