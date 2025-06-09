@@ -41,6 +41,8 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				-- "pylint",
+				"java-debug-adapter",
+				"java-test",
 				"eslint_d",
 				-- "isort", -- python formatter
 				-- "black", -- python formatter

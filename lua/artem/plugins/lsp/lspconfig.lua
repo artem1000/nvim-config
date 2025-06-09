@@ -78,12 +78,18 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		local lsp_attach = function(client, bufnr) end
+		vim.api.nvim_command("MasonToolsInstall")
+
 		mason_lspconfig.setup_handlers({
 			-- default handler for installed servers
 			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
+				if server_name ~= "jdtls" then -- i have to do this otherwise there are 2 instance of JDTLS launched
+					lspconfig[server_name].setup({
+						on_attach = lsp_attach,
+						capabilities = capabilities,
+					})
+				end
 			end,
 			["groovyls"] = function()
 				lspconfig["groovyls"].setup({
