@@ -113,6 +113,7 @@ return {
 							},
 							staticcheck = true, -- enable staticcheck for better linting
 							usePlaceholders = true, -- enable placeholders in completions
+							completeUnimported = true,
 							gofumpt = true, -- format code with gofumpt
 							semanticTokens = true, -- enable semantic tokens
 						},
