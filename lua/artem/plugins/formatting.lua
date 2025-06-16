@@ -25,11 +25,11 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 			},
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 6000,
-			},
+			-- format_on_save = {
+			-- 	lsp_fallback = true,
+			-- 	async = false,
+			-- 	timeout_ms = 6000,
+			-- },
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
