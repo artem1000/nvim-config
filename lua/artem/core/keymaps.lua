@@ -86,6 +86,10 @@ keymap.set("n", "<leader>jc", ":lua require'jdtls'.compile()<CR>", { desc = "JDT
 -- this one does not seem to work in nvim, so removing it.
 keymap.set("n", "<leader>p", '"_dP') -- preserves original highlighted buffer when copying it over another highlighted word.
 
+-- this set deletes stuff into the blackhole register so that it does not overwrite the system clipboard register
+keymap.set("n", "<leader>D", '"_D') -- deletes to the end of the line into the black hole 
+keymap.set("n", "<leader>dd", '"_dd') -- deletes entire line into the black hole 
+
 -- keymap.set("n", "<leader>y", '"+y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else
 -- keymap.set("v", "<leader>y", '"+y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else
 -- keymap.set("n", "<leader>Y", '"+Y', { desc = "Yank into system buffer" }) -- yanks into the system buffer that can be copied pasted via Ctrl-V somewhere else
