@@ -8,7 +8,7 @@ return {
 	},
 	config = function()
 		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
@@ -75,7 +75,22 @@ return {
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
+						[vim.diagnostic.severity.HINT] = "󰠠 ",
+					},
+					linehl = {
+						[vim.diagnostic.severity.ERROR] = "Error",
+						[vim.diagnostic.severity.WARN] = "Warn",
+						[vim.diagnostic.severity.INFO] = "Info",
+						[vim.diagnostic.severity.HINT] = "Hint",
+					},
+				},
+			})
 		end
 
 		local lsp_attach = function(client, bufnr) end
@@ -85,14 +100,15 @@ return {
 			-- default handler for installed servers
 			function(server_name)
 				if server_name ~= "jdtls" then -- i have to do this otherwise there are 2 instance of JDTLS launched
-					lspconfig[server_name].setup({
+					vim.lsp.config (server_name, {
 						on_attach = lsp_attach,
 						capabilities = capabilities,
 					})
 				end
+        vim.lsp.enable({server_name})
 			end,
 			["groovyls"] = function()
-				lspconfig["groovyls"].setup({
+				vim.lsp.config("groovyls", {
 					capabilities = capabilities,
 					filetypes = { "groovy", "ncfg", "bjs", "bjd" },
 					cmd = {
@@ -101,9 +117,10 @@ return {
 						"/Users/agrinchenko/Documents/DEV/groovy-lsp/groovy-language-server/build/libs/groovy-language-server-all.jar",
 					},
 				})
+        vim.lsp.enable({"groovyls"})
 			end,
 			["gopls"] = function()
-				lspconfig["gopls"].setup({
+				vim.lsp.config("gopls", {
 					capabilities = capabilities,
 					settings = {
 						gopls = {
@@ -131,10 +148,11 @@ return {
 						vim.keymap.set("n", "<leader>D", "<Cmd>Telescope diagnostics bufnr=0<CR>", opts) -- Show diagnostics
 					end,
 				})
+        vim.lsp.enable({"gopls"})
 			end,
 			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
+				-- lspconfig["lua_ls"].setup({
+				vim.lsp.config("lua_ls", {
 					capabilities = capabilities,
 					settings = {
 						Lua = {
@@ -148,6 +166,7 @@ return {
 						},
 					},
 				})
+      vim.lsp.enable({"lua_ls"})
 			end,
 		})
 	end,
